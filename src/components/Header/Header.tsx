@@ -1,7 +1,11 @@
 import "./Header.module.css";
 
 function Header() {
-  return <></>;
+  return (
+    <>
+      <header></header>
+    </>
+  );
 }
 
 export default Header;

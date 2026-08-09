@@ -1,7 +1,11 @@
 import "./Home.module.css";
 
 function Home() {
-  return <></>;
+  return (
+    <>
+      <h1></h1>
+    </>
+  );
 }
 
 export default Home;
