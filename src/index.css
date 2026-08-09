@@ -1,17 +1,14 @@
 :root {
-  --text: rgba(17, 16, 28, 0.5);
-  --text-h: #11101c;
+  --text: #11101c;
+  --text-sub: rgba(17, 16, 28, 0.5);
   --white: #fbfbfb;
   --accent: #f03f3b;
   --accent-light: rgba(240, 63, 59, 0.2);
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --font-family: "Inter", sans-serif;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+
+  font-family: var(--font-family);
   color: var(--text);
   background: var(--white);
   font-synthesis: none;
@@ -19,14 +16,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1440рх) {
-    font-size: 16px;
-  }
 }
 
-
-body {
-  margin: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 a {
@@ -41,6 +36,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 input,
@@ -50,6 +46,7 @@ select {
   font: inherit;
 }
 
+body,
 h1,
 h2,
 h3,
@@ -69,31 +66,24 @@ ol {
   list-style: none;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
+html,
+body {
 
-  /* @media (max-width: 1440рх) {
-    font-size: 36px;
-    margin: 20px 0;
-  } */
+  height: 100%;
 }
 
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-
-  /* @media (max-width: 1440рх) {
-  font-size: 20px;
-} */
+.container {
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

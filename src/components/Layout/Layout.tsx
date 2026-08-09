@@ -1,12 +1,12 @@
 // import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import "./Layout.module.css";
+import css from "./Layout.module.css";
 import { Outlet } from "react-router";
 
 function Layout() {
   return (
     <>
-      <div>
+      <div className={css.layout}>
         <Header />
         <main>
           <Outlet />
