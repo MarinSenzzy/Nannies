@@ -1,13 +1,143 @@
-.homeheader {
+.header {}
+
+.headerHome {
     position: absolute;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: transparent;
-    border-bottom: 1px solid rgba(251, 251, 251, 0.2);
-    width: calc(100% - 64px);
+    top: 16px;
+    left: 16px;
+    width: calc(100% - 32px);
+    z-index: 100;
+
+    @media screen and (min-width: 768px) {
+        top: 32px;
+        left: 32px;
+        width: calc(100% - 64px);
+    }
+
+
 }
 
-.headerwrapper {
+.container {
     display: flex;
+    border-bottom: 1px solid rgb(251, 251, 251, 0.4);
+
+    @media screen and (min-width: 768px) {}
+
+    @media screen and (min-width: 1400px) {}
+}
+
+.sidehead {
+    height: 88px;
+    display: flex;
+
+
+}
+
+.lefthead {
+
+    padding-left: 40px;
+
+    @media screen and (min-width: 768px) {
+        padding-left: 64px;
+        width: 49%;
+
+    }
+
+    @media screen and (min-width: 1400px) {
+        padding-left: 96px;
+    }
+}
+
+.righthead {
+    justify-content: space-between;
+
+    @media screen and (min-width: 768px) {
+        padding-left: clamp(0px, calc(0px + (66 - 0) * ((100vw - 768px) / 632)), 66px);
+        padding-right: clamp(0px, calc(0px + (66 - 0) * ((100vw - 768px) / 632)), 66px);
+        width: 51%;
+
+    }
+
+}
+
+.logo {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    align-self: center;
+
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, calc(16px + (40 - 16) * ((100vw - 768px) / 632)), 40px);
+
+    a {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 125%;
+        letter-spacing: -0.01em;
+        color: var(--white);
+        position: relative;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.activeLink::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--white);
+    border-radius: 50%;
+}
+
+.authBtns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.loginBtn {
+    padding: clamp(10px, calc(10px + (14 - 10) * ((100vw - 768px) / 632)), 14px) clamp(20px, calc(20px + (39 - 20) * ((100vw - 768px) / 632)), 39px);
+    border: 1px solid rgba(251, 251, 251, 0.4);
+    border-radius: 30px;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 500;
+    background: transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        border-color: var(--white);
+        color: var(--white);
+    }
+}
+
+.registerBtn {
+    padding: clamp(10px, calc(10px + (14 - 10) * ((100vw - 768px) / 632)), 14px) clamp(20px, calc(20px + (40 - 20) * ((100vw - 768px) / 632)), 40px);
+    background-color: var(--accent);
+    border-radius: 30px;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--accent);
+    }
 }
