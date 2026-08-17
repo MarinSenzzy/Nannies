@@ -1,10 +1,14 @@
 import { Link, useLocation } from 'react-router';
 import css from './Header.module.css';
+import { LoginModal } from '../AuthForm/LoginForm';
+import { RegisterModal } from '../AuthForm/RegisterForm';
+import { useState } from 'react';
 
 export function Header() {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
-
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   return (
     <header className={`${css.header} ${isHome ? css.headerHome : css.headerDefault}`}>
       <div className={css.container}>
@@ -24,15 +28,22 @@ export function Header() {
           </nav>
 
           <div className={css.authBtns}>
-            <button type="button" className={css.loginBtn}>
+            <button type="button" className={css.loginBtn} onClick={() => setIsLoginOpen(true)}>
               Log In
             </button>
-            <button type="button" className={css.registerBtn}>
+            <button
+              type="button"
+              className={css.registerBtn}
+              onClick={() => setIsRegisterOpen(true)}
+            >
               Registration
             </button>
           </div>
         </div>
       </div>
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+
+      <RegisterModal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} />
     </header>
   );
 }
