@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode, type MouseEvent } from 'react';
+import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 
 interface ModalProps {
@@ -6,6 +7,7 @@ interface ModalProps {
   onClose: () => void;
   children: ReactNode;
 }
+const modalRoot = document.getElementById('modal-root');
 
 export function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {
@@ -26,7 +28,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !modalRoot) return null;
 
   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -34,7 +36,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     }
   };
 
-  return (
+  return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <button type="button" className={css.closeBtn} onClick={onClose}>
@@ -63,6 +65,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 }

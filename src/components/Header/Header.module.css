@@ -1,4 +1,6 @@
-.header {}
+.header {
+    width: 100%;
+}
 
 .headerHome {
     position: absolute;
@@ -16,21 +18,51 @@
 
 }
 
-.container {
-    display: flex;
-    border-bottom: 1px solid rgb(251, 251, 251, 0.4);
-
-    @media screen and (min-width: 768px) {}
-
-    @media screen and (min-width: 1400px) {}
+.headerDefault {
+    background-color: var(--accent);
 }
 
-.sidehead {
+.container {
     height: 88px;
     display: flex;
-
+    border-bottom: 1px solid rgb(251, 251, 251, 0.4);
+    align-items: center;
 
 }
+
+.containerDefault {
+    justify-content: space-between;
+    padding: 0 40px;
+
+    @media screen and (min-width: 768px) {
+        padding: 0 64px;
+    }
+
+    @media screen and (min-width: 1400px) {
+        padding: 0 96px;
+    }
+
+    .registerBtn {
+        padding: clamp(10px, calc(10px + (14 - 10) * ((100vw - 768px) / 632)), 14px) clamp(20px, calc(20px + (40 - 20) * ((100vw - 768px) / 632)), 40px);
+        border: 1px solid rgba(251, 251, 251, 0.4);
+        border-radius: 30px;
+        color: var(--white);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 125%;
+        letter-spacing: -0.01em;
+        background: transparent;
+        transition: border-color 0.2s ease,
+            color 0.2s ease;
+
+        &:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+    }
+}
+
+/* .sidehead {} */
 
 .lefthead {
 
@@ -76,6 +108,13 @@
     display: flex;
     align-items: center;
     gap: clamp(16px, calc(16px + (40 - 16) * ((100vw - 768px) / 632)), 40px);
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+
+
+    }
 
     a {
         font-weight: 400;
@@ -105,18 +144,27 @@
 }
 
 .authBtns {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 8px;
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+
+
+    }
 }
 
-.loginBtn {
+.logBtn {
     padding: clamp(10px, calc(10px + (14 - 10) * ((100vw - 768px) / 632)), 14px) clamp(20px, calc(20px + (39 - 20) * ((100vw - 768px) / 632)), 39px);
     border: 1px solid rgba(251, 251, 251, 0.4);
     border-radius: 30px;
     color: var(--white);
-    font-size: 16px;
     font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
     background: transparent;
     transition: border-color 0.2s ease, color 0.2s ease;
 
@@ -142,4 +190,27 @@
         background-color: var(--white);
         color: var(--accent);
     }
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.userAvatar {
+    display: flex;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--white);
+    justify-content: center;
+}
+
+.userName {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 111%;
+    letter-spacing: -0.01em;
+    color: var(--white);
 }
