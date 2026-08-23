@@ -81,9 +81,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1184px;
+  max-width: 1204px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0 20px
 }

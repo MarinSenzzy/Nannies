@@ -32,15 +32,15 @@
 
 .containerDefault {
     justify-content: space-between;
-    padding: 0 40px;
+    /* padding: 0 40px; */
+    max-width: 1204px;
+    margin: 0 auto;
 
-    @media screen and (min-width: 768px) {
-        padding: 0 64px;
-    }
+    padding: 0 20px;
 
-    @media screen and (min-width: 1400px) {
-        padding: 0 96px;
-    }
+    @media screen and (min-width: 768px) {}
+
+    @media screen and (min-width: 1400px) {}
 
     .registerBtn {
         padding: clamp(10px, calc(10px + (14 - 10) * ((100vw - 768px) / 632)), 14px) clamp(20px, calc(20px + (40 - 20) * ((100vw - 768px) / 632)), 40px);
@@ -154,6 +154,10 @@
 
 
     }
+}
+
+.authUser {
+    gap: clamp(12px, calc(12px + (23 - 12) * ((100vw - 768px) / 632)), 23px);
 }
 
 .logBtn {

@@ -47,7 +47,7 @@ function AuthButtons({ onOpenLogin, onOpenRegister }: AuthButtonsProps) {
   };
   if (user) {
     return (
-      <div className={css.authBtns}>
+      <div className={`${css.authBtns} ${css.authUser}`}>
         <div className={css.userInfo}>
           <div className={css.userAvatar}>
             <svg
@@ -93,7 +93,7 @@ export function Header() {
 
   return (
     <header className={`${css.header} ${isHome ? css.headerHome : css.headerDefault}`}>
-      <div className={`${css.container} ${isHome ? css.containerHome : css.containerDefault}`}>
+      <div className={` ${css.container} ${isHome ? css.containerHome : css.containerDefault}`}>
         {isHome ? (
           <>
             <div className={`${css.sidehead} ${css.lefthead}`}>
