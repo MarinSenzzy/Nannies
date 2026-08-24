@@ -4,6 +4,8 @@ import Nannies from '../pages/Nannies/Nannies';
 import Layout from '../Layout/Layout';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '../../context/AuthProvider';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import Favorites from '../pages/Favorites/Favorites';
 function App() {
   return (
     <>
@@ -14,6 +16,14 @@ function App() {
             <Route index element={<Home />} />
 
             <Route path="nannies" element={<Nannies />} />
+            <Route
+              path="/favorites"
+              element={
+                <PrivateRoute>
+                  <Favorites />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </AuthProvider>

@@ -32,7 +32,7 @@ export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProp
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className={css.card}>
+    <li className={css.card}>
       <div className={css.avatarWrapper}>
         <img src={nanny.avatar_url} alt={nanny.name} className={css.avatar} />
         <span className={css.onlineBadge} />
@@ -44,7 +44,6 @@ export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProp
             <p className={css.subtitle}>Nanny</p>
             <h3 className={css.name}>{nanny.name}</h3>
           </div>
-
           <ul className={css.meta}>
             <li>
               <svg
@@ -69,30 +68,26 @@ export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProp
             <li>
               Price / 1 hour: <strong className={css.price}>{nanny.price_per_hour}$</strong>
             </li>
-            <button
-              type="button"
-              className={css.heartBtn}
-              onClick={() => onToggleFavorite(nanny.id)}
-            >
-              {isFavorite ? (
-                <svg width={26} height={24} className={css.icon}>
-                  <use href={`${img}#icon-heart-h`} />
-                </svg>
-              ) : (
-                <svg
-                  width={26}
-                  height={24}
-                  className={css.icon}
-                  style={{
-                    stroke: '#000',
-                    fill: 'transparent',
-                  }}
-                >
-                  <use href={`${img}#icon-heart-n`} />
-                </svg>
-              )}
-            </button>
           </ul>
+          <button type="button" className={css.heartBtn} onClick={() => onToggleFavorite(nanny.id)}>
+            {isFavorite ? (
+              <svg width={26} height={24} className={css.icon}>
+                <use href={`${img}#icon-heart-h`} />
+              </svg>
+            ) : (
+              <svg
+                width={26}
+                height={24}
+                className={css.icon}
+                style={{
+                  stroke: '#000',
+                  fill: 'transparent',
+                }}
+              >
+                <use href={`${img}#icon-heart-n`} />
+              </svg>
+            )}
+          </button>
         </div>
 
         <ul className={css.tags}>
@@ -155,6 +150,6 @@ export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProp
           </div>
         )}
       </div>
-    </div>
+    </li>
   );
 }

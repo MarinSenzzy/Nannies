@@ -16,6 +16,8 @@ import {
 } from 'firebase/database';
 import { db } from '../../../firebase/config';
 import { customStyles, type FilterOption } from './SortSelect.styles';
+import { AuthWarning } from '../../AuthWarning/AuthWarning';
+import { LoginModal } from '../../AuthForm/LoginForm';
 
 const FILTER_OPTIONS: FilterOption[] = [
   { value: 'a-z', label: 'A to Z' },
@@ -33,6 +35,9 @@ function Nannies() {
   const [selectedFilter, setSelectedFilter] = useState(FILTER_OPTIONS[0]);
   const [visibleCount, setVisibleCount] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isAuthWarningOpen, setIsAuthWarningOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,7 +93,7 @@ function Nannies() {
 
   const handleToggleFavorite = async (nannyId: string) => {
     if (!user) {
-      alert('This functionality is available only for authorized users!');
+      setIsAuthWarningOpen(true);
       return;
     }
     const isFav = !!favorites[nannyId];
@@ -128,6 +133,12 @@ function Nannies() {
           />
         </div>
       </section>
+      <AuthWarning
+        isOpen={isAuthWarningOpen}
+        onClose={() => setIsAuthWarningOpen(false)}
+        onLoginClick={() => setIsLoginModalOpen(true)}
+      />
+      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </>
   );
 }

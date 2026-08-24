@@ -96,12 +96,12 @@ export function Header() {
       <div className={` ${css.container} ${isHome ? css.containerHome : css.containerDefault}`}>
         {isHome ? (
           <>
-            <div className={`${css.sidehead} ${css.lefthead}`}>
+            <div className={css.lefthead}>
               <Link to="/" className={css.logo}>
                 Nanny.Services
               </Link>
             </div>
-            <div className={`${css.sidehead} ${css.righthead}`}>
+            <div className={css.righthead}>
               <Navigation />
               <AuthButtons
                 onOpenLogin={() => setIsLoginOpen(true)}
@@ -110,7 +110,6 @@ export function Header() {
             </div>
           </>
         ) : (
-          /* Лайаут для стандартних сторінок */
           <>
             <Link to="/" className={css.logo}>
               Nanny.Services

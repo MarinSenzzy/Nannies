@@ -1,0 +1,41 @@
+.favorites {
+
+
+    padding-top: 64px;
+
+}
+
+.filters {
+    margin-bottom: 32px;
+}
+
+.filtTitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    color: var(--text-sub);
+    margin-bottom: 8px;
+}
+
+.filtSelect {
+    width: 100%;
+    max-width: 240px;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 300px;
+    width: 100%;
+    padding: 40px;
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-sub);
+    text-align: center;
+
+    margin: 0 auto;
+}

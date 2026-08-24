@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
-
+import img from '../../assets/icons.svg';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -40,27 +40,8 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <button type="button" className={css.closeBtn} onClick={onClose}>
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M24 8L8 24"
-              stroke="#11101C"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8 8L24 24"
-              stroke="#11101C"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+          <svg width="32" height="32" className={css.closeIcon}>
+            <use href={`${img}#icon-close`} />
           </svg>
         </button>
         {children}

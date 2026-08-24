@@ -23,8 +23,8 @@ export function NanniesList({
   }
 
   return (
-    <div className={css.container}>
-      <div className={css.list}>
+    <>
+      <ul className={css.list}>
         {nannies.map(nanny => (
           <NannyCard
             key={nanny.id}
@@ -33,13 +33,13 @@ export function NanniesList({
             onToggleFavorite={onToggleFavorite}
           />
         ))}
-      </div>
+      </ul>
 
       {hasMore && (
         <button type="button" onClick={onLoadMore} disabled={isLoading} className={css.loadMoreBtn}>
           {isLoading ? 'Loading...' : 'Load more'}
         </button>
       )}
-    </div>
+    </>
   );
 }

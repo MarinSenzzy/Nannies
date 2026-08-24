@@ -1,0 +1,59 @@
+.warningContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    margin-bottom: 14px;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-sub);
+    margin-bottom: 28px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.cancelBtn,
+.loginBtn {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    border-radius: 30px;
+    padding-block: 14px;
+    padding-inline: 40px;
+    transition: all 0.2s ease;
+}
+
+.cancelBtn {
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--text);
+}
+
+.cancelBtn:hover {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+.loginBtn {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+.loginBtn:hover {
+    background-color: var(--white);
+    color: var(--accent);
+}

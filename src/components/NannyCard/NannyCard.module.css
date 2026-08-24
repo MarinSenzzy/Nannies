@@ -17,8 +17,7 @@
 
 .avatarWrapper {
     position: relative;
-    width: 320px;
-    height: 320px;
+    max-width: 320px;
     align-self: center;
     flex-shrink: 0;
     display: flex;
@@ -26,6 +25,7 @@
     align-items: center;
     outline: 2px solid var(--accent-light);
     justify-content: center;
+    padding: 12px;
 
     @media screen and (min-width: 1024px) {
         width: 120px;
@@ -36,8 +36,6 @@
 }
 
 .avatar {
-    width: 300px;
-    height: 300px;
     border-radius: 15px;
     object-fit: cover;
 

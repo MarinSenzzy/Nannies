@@ -177,6 +177,10 @@
         @media screen and (min-width: 1400px) {}
     }
 
+    .badgeIconSvg {
+        color: var(--white);
+    }
+
     .badgeText {
         display: flex;
         flex-direction: column;
