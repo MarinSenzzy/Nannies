@@ -5,6 +5,8 @@ import { registerUser } from '../../services/authService';
 import { Modal } from '../Modal/Modal';
 import toast from 'react-hot-toast';
 import css from './AuthForm.module.css';
+import { useState } from 'react';
+import img from '../../assets/icons.svg';
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface RegisterModalProps {
 }
 
 export function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -61,17 +64,26 @@ export function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
             {errors.email && <p className={css.errorText}>{errors.email.message}</p>}
           </div>
 
-          <div className={css.inputGroup}>
+          <div className={`${css.inputGroup} ${css.passwordGroup}`}>
             <input
               {...register('password')}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               className={`${css.input} ${errors.password ? css.inputError : ''}`}
-            />
+            />{' '}
+            <button
+              type="button"
+              className={css.eyeBtn}
+              onClick={() => setShowPassword(prev => !prev)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            >
+              <svg width="20" height="20" className={css.eyeIcon}>
+                <use href={`${img}#${showPassword ? 'icon-eye' : 'icon-eye-off'}`} />
+              </svg>
+            </button>
             {errors.password && <p className={css.errorText}>{errors.password.message}</p>}
           </div>
         </div>
-        {/* {errors.root && <p className={css.rootError}>{errors.root.message}</p>} */}
 
         <button type="submit" disabled={isSubmitting} className={css.submitBtn}>
           {isSubmitting ? 'Signing Up...' : 'Sign Up'}

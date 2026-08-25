@@ -33,6 +33,34 @@
     gap: 4px;
 }
 
+.passwordGroup {
+    position: relative;
+}
+
+.eyeBtn {
+    position: absolute;
+    top: 26px;
+    transform: translateY(-50%);
+    right: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.eyeIcon {
+    stroke: var(--text);
+    fill: transparent;
+    transition: stroke 0.2s ease;
+}
+
+.eyeBtn:hover .eyeIcon {
+    stroke: var(--accent);
+}
+
+
+
 .input {
     width: 100%;
     padding: 16px 18px;
@@ -40,6 +68,8 @@
     border-radius: 12px;
     font-size: 16px;
     outline: none;
+
+    padding-right: 48px;
 
     &:focus {
         border-color: var(--accent);

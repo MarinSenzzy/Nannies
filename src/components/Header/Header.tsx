@@ -6,13 +6,14 @@ import { RegisterModal } from '../AuthForm/RegisterForm';
 import { useAuth } from '../../hooks/useAuth';
 import { logoutUser } from '../../services/authService';
 import toast from 'react-hot-toast';
+import img from '../../assets/icons.svg';
 
-function Navigation() {
+function Navigation({ onItemClick }: { onItemClick?: () => void }) {
   const { user } = useAuth();
   const { pathname } = useLocation();
   const isHome = pathname === '/';
   return (
-    <nav className={css.nav}>
+    <nav className={css.nav} onClick={onItemClick}>
       <NavLink to="/" className={({ isActive }) => (isActive ? css.activeLink : '')}>
         Home
       </NavLink>
@@ -50,17 +51,8 @@ function AuthButtons({ onOpenLogin, onOpenRegister }: AuthButtonsProps) {
       <div className={`${css.authBtns} ${css.authUser}`}>
         <div className={css.userInfo}>
           <div className={css.userAvatar}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 4C13.0609 4 14.0783 4.42143 14.8284 5.17157C15.5786 5.92172 16 6.93913 16 8C16 9.06087 15.5786 10.0783 14.8284 10.8284C14.0783 11.5786 13.0609 12 12 12C10.9391 12 9.92172 11.5786 9.17157 10.8284C8.42143 10.0783 8 9.06087 8 8C8 6.93913 8.42143 5.92172 9.17157 5.17157C9.92172 4.42143 10.9391 4 12 4ZM12 14C16.42 14 20 15.79 20 18V20H4V18C4 15.79 7.58 14 12 14Z"
-                fill="var(--accent)"
-              />
+            <svg width={24} height={24} className={css.userAvatarIcon}>
+              <use href={`${img}#icon-icn_user`} />
             </svg>
           </div>
           <span className={css.userName}>{user.displayName || 'User'}</span>
@@ -83,14 +75,26 @@ function AuthButtons({ onOpenLogin, onOpenRegister }: AuthButtonsProps) {
     </div>
   );
 }
-
+interface BurgerButtonProps {
+  menuOpen: boolean;
+  setMenuOpen: () => void;
+}
+const BurgerButton = ({ menuOpen, setMenuOpen }: BurgerButtonProps) => (
+  <button type="button" className={css.burgerBtn} onClick={setMenuOpen} aria-label="Toggle menu">
+    <svg width={22} height={20} className={`${css.burgerIcon} ${menuOpen && css.active}`}>
+      <use href={`${img}#icon-header-mob-menu`} />
+    </svg>
+  </button>
+);
 export function Header() {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => setIsMenuOpen(prev => !prev);
   return (
     <header className={`${css.header} ${isHome ? css.headerHome : css.headerDefault}`}>
       <div className={` ${css.container} ${isHome ? css.containerHome : css.containerDefault}`}>
@@ -107,6 +111,7 @@ export function Header() {
                 onOpenLogin={() => setIsLoginOpen(true)}
                 onOpenRegister={() => setIsRegisterOpen(true)}
               />
+              <BurgerButton menuOpen={isMenuOpen} setMenuOpen={toggleMenu} />
             </div>
           </>
         ) : (
@@ -119,7 +124,23 @@ export function Header() {
               onOpenLogin={() => setIsLoginOpen(true)}
               onOpenRegister={() => setIsRegisterOpen(true)}
             />
+            <BurgerButton menuOpen={isMenuOpen} setMenuOpen={toggleMenu} />
           </>
+        )}
+        {isMenuOpen && (
+          <div className={css.mobileMenu}>
+            <Navigation onItemClick={closeMenu} />
+            <AuthButtons
+              onOpenLogin={() => {
+                setIsLoginOpen(true);
+                closeMenu();
+              }}
+              onOpenRegister={() => {
+                setIsRegisterOpen(true);
+                closeMenu();
+              }}
+            />
+          </div>
         )}
       </div>
 
