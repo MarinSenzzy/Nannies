@@ -2,6 +2,7 @@ import { useState } from 'react';
 import css from './NannyCard.module.css';
 import img from '../../assets/icons.svg';
 import { calculateAge } from '../../utils/calculateAge';
+
 export interface Nanny {
   id: string;
   name: string;
@@ -26,9 +27,15 @@ interface NannyCardProps {
   nanny: Nanny;
   isFavorite: boolean;
   onToggleFavorite: (id: string) => void;
+  onOpenAppointment: () => void;
 }
 
-export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProps) {
+export function NannyCard({
+  nanny,
+  isFavorite,
+  onToggleFavorite,
+  onOpenAppointment,
+}: NannyCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -144,7 +151,7 @@ export function NannyCard({ nanny, isFavorite, onToggleFavorite }: NannyCardProp
                 </li>
               ))}
             </ul>
-            <button type="button" className={css.appointmentBtn}>
+            <button type="button" className={css.appointmentBtn} onClick={onOpenAppointment}>
               Make an appointment
             </button>
           </div>

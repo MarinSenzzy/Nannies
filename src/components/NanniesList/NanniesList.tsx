@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { NannyCard, type Nanny } from '../NannyCard/NannyCard';
 import css from './NanniesList.module.css';
+import { AppointmentModal } from '../AppointmentModal/AppointmentModal';
 
 interface NanniesListProps {
   nannies: Nanny[];
@@ -18,6 +20,7 @@ export function NanniesList({
   onLoadMore,
   isLoading,
 }: NanniesListProps) {
+  const [selectedNanny, setSelectedNanny] = useState<Nanny | null>(null);
   if (nannies.length === 0 && !isLoading) {
     return <p className={css.empty}>No nannies found for this filter.</p>;
   }
@@ -31,6 +34,7 @@ export function NanniesList({
             nanny={nanny}
             isFavorite={!!favorites[nanny.id]}
             onToggleFavorite={onToggleFavorite}
+            onOpenAppointment={() => setSelectedNanny(nanny)}
           />
         ))}
       </ul>
@@ -39,6 +43,14 @@ export function NanniesList({
         <button type="button" onClick={onLoadMore} disabled={isLoading} className={css.loadMoreBtn}>
           {isLoading ? 'Loading...' : 'Load more'}
         </button>
+      )}
+
+      {selectedNanny && (
+        <AppointmentModal
+          nanny={selectedNanny}
+          isOpen={Boolean(selectedNanny)}
+          onClose={() => setSelectedNanny(null)}
+        />
       )}
     </>
   );

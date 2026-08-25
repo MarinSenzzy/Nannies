@@ -1,13 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import Select, { type SingleValue } from 'react-select';
-import css from './Favorites.module.css'; // Создайте аналогичный файл стилей
+import css from './Favorites.module.css';
 import { useAuth } from '../../../hooks/useAuth';
 import type { Nanny } from '../../NannyCard/NannyCard';
 import { NanniesList } from '../../NanniesList/NanniesList';
 import { getFavorites, toggleFavoriteApi } from '../../../services/favorites';
 import { ref, get } from 'firebase/database';
 import { db } from '../../../firebase/config';
-import { customStyles, type FilterOption } from '../Nannies/SortSelect.styles'; // Проверьте путь к вашим стилям селекта
+import { customStyles, type FilterOption } from '../Nannies/SortSelect.styles';
 
 const FILTER_OPTIONS: FilterOption[] = [
   { value: 'a-z', label: 'A to Z' },
@@ -35,11 +35,9 @@ function Favorites() {
       }
 
       try {
-        // 1. Получаем ID всех избранных нянь пользователя
         const userFavs = await getFavorites(user.uid);
         setFavorites(userFavs);
 
-        // Фильтруем только те ключи, у которых значение true
         const favIds = Object.keys(userFavs).filter(key => userFavs[key]);
 
         if (favIds.length === 0) {
@@ -47,7 +45,6 @@ function Favorites() {
           return;
         }
 
-        // 2. Получаем полный список нянь из базы и оставляем только избранных
         const snapshot = await get(ref(db, 'nannies'));
         if (snapshot.exists()) {
           const data = snapshot.val();
@@ -66,7 +63,6 @@ function Favorites() {
     fetchFavoritesData();
   }, [user]);
 
-  // Логика сортировки и фильтрации внутри избранного
   const filteredNannies = useMemo(() => {
     let result = [...favoriteNannies];
 
@@ -99,24 +95,20 @@ function Favorites() {
   const handleToggleFavorite = async (nannyId: string) => {
     if (!user) return;
 
-    // На странице Favorites клик по сердечку всегда удаляет карточку
     setFavorites(prev => {
       const updated = { ...prev };
-      delete updated[nannyId]; // Полностью удаляем ключ из объекта избранного
+      delete updated[nannyId];
       return updated;
     });
 
-    // Мгновенно убираем няню из локального списка на экране, чтобы интерфейс реагировал без задержек
     setFavoriteNannies(prev => prev.filter(nanny => nanny.id !== nannyId));
 
-    // Отправляем запрос на удаление в Firebase API
     await toggleFavoriteApi(user.uid, nannyId, true);
   };
 
   const visibleNannies = filteredNannies.slice(0, visibleCount);
   const hasMore = visibleCount < filteredNannies.length;
 
-  // Если пользователь не авторизован
   if (!user && !isLoading) {
     return (
       <div className="container">
@@ -128,7 +120,6 @@ function Favorites() {
   return (
     <section className={css.favorites}>
       <div className="container">
-        {/* Показываем фильтр, только если у пользователя вообще есть избранные няни */}
         {favoriteNannies.length > 0 && (
           <div className={css.filters}>
             <h2 className={css.filtTitle}>Filters</h2>
@@ -140,7 +131,7 @@ function Favorites() {
                 onChange={(opt: SingleValue<FilterOption>) => {
                   if (opt) {
                     setSelectedFilter(opt);
-                    setVisibleCount(3); // Сбрасываем пагинацию при изменении фильтра
+                    setVisibleCount(3);
                   }
                 }}
               />
@@ -148,7 +139,6 @@ function Favorites() {
           </div>
         )}
 
-        {/* Если загрузка завершена и избранных нет, показываем заглушку */}
         {!isLoading && favoriteNannies.length === 0 ? (
           <p className={css.empty}>You haven't added any nannies to your favorites yet.</p>
         ) : (

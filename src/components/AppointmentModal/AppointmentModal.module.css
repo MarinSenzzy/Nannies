@@ -1,0 +1,157 @@
+.title {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--text-sub);
+    margin-bottom: 20px;
+}
+
+.nannyInfo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.nannyLabel {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    color: #8a8a89;
+}
+
+.nannyName {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--text);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 4px;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    border-radius: 12px;
+    background: transparent;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125%;
+    outline: none;
+}
+
+.textarea {
+    resize: none;
+}
+
+.timePickerContainer {
+    position: relative;
+}
+
+.timeInputWrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.timeInput {
+    cursor: pointer;
+}
+
+.clockIcon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #11101c;
+    pointer-events: none;
+}
+
+.timeDropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: 150px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0px 20px 69px rgba(0, 0, 0, 0.07);
+    z-index: 20;
+}
+
+.dropdownTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 12px;
+    color: #11101c;
+}
+
+.timeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.timeOption {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    color: var(--text-sub);
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s;
+}
+
+.timeOption:hover,
+.timeOption.selected {
+    color: var(--text);
+}
+
+.sendBtn {
+    margin-top: 40px;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--accent);
+    color: var(--white);
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sendBtn:hover {
+    background-color: var(--white);
+    color: var(--accent);
+}
