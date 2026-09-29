@@ -43,6 +43,9 @@ function AuthButtons({ onOpenLogin, onOpenRegister }: AuthButtonsProps) {
       await logoutUser();
       toast.success(`Logout successful, ${userName}!`);
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown logout error';
+
+      toast.error(errorMessage);
       // console.error('Logout error:', error);
     }
   };

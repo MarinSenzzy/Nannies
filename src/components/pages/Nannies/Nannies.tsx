@@ -18,6 +18,7 @@ import { db } from '../../../firebase/config';
 import { customStyles, type FilterOption } from './SortSelect.styles';
 import { AuthWarning } from '../../AuthWarning/AuthWarning';
 import { LoginModal } from '../../AuthForm/LoginForm';
+import toast from 'react-hot-toast';
 
 const FILTER_OPTIONS: FilterOption[] = [
   { value: 'a-z', label: 'A to Z' },
@@ -53,7 +54,9 @@ function Nannies() {
           setFavorites(userFavs);
         }
       } catch (err) {
-        // console.error(err);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown logout error';
+
+        toast.error(errorMessage);
       } finally {
         setIsLoading(false);
       }

@@ -8,6 +8,7 @@ import { getFavorites, toggleFavoriteApi } from '../../../services/favorites';
 import { ref, get } from 'firebase/database';
 import { db } from '../../../firebase/config';
 import { customStyles, type FilterOption } from '../Nannies/SortSelect.styles';
+import toast from 'react-hot-toast';
 
 const FILTER_OPTIONS: FilterOption[] = [
   { value: 'a-z', label: 'A to Z' },
@@ -54,7 +55,9 @@ function Favorites() {
           setFavoriteNannies(filteredFavs);
         }
       } catch (err) {
-        // console.error(err);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown logout error';
+
+        toast.error(errorMessage);
       } finally {
         setIsLoading(false);
       }

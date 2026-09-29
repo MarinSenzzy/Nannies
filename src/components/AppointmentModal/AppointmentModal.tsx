@@ -68,7 +68,7 @@ export const AppointmentModal = ({ nanny, isOpen, onClose }: AppointmentModalPro
 
   const onSubmit = (data: FormData) => {
     // console.log('Form data:', data);
-    toast.success('Appointment successfully sent!');
+    toast.success(`Appointment successfully sent! ${data.parentName}, we'll be in touch soon`);
     reset();
     onClose();
   };
