@@ -67,7 +67,7 @@ export const AppointmentModal = ({ nanny, isOpen, onClose }: AppointmentModalPro
   const selectedTime = watch('meetingTime');
 
   const onSubmit = (data: FormData) => {
-    console.log('Form data:', data);
+    // console.log('Form data:', data);
     toast.success('Appointment successfully sent!');
     reset();
     onClose();

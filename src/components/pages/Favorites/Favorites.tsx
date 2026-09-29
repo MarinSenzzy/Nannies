@@ -54,7 +54,7 @@ function Favorites() {
           setFavoriteNannies(filteredFavs);
         }
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       } finally {
         setIsLoading(false);
       }

@@ -43,7 +43,7 @@ function AuthButtons({ onOpenLogin, onOpenRegister }: AuthButtonsProps) {
       await logoutUser();
       toast.success(`Logout successful, ${userName}!`);
     } catch (error) {
-      console.error('Logout error:', error);
+      // console.error('Logout error:', error);
     }
   };
   if (user) {
