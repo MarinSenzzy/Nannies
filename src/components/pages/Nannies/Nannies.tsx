@@ -52,6 +52,8 @@ function Nannies() {
         if (user) {
           const userFavs = await getFavorites(user.uid);
           setFavorites(userFavs);
+        } else {
+          setFavorites({});
         }
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown logout error';
